@@ -7,22 +7,16 @@
 namespace WideFocus\Feed\Source\Condition;
 
 use ArrayAccess;
-use WideFocus\Validator\ValidatorContainerInterface;
+use WideFocus\Feed\Source\Condition\Validator\ValidatorContainerInterface;
 
 /**
  * Contains a combination of conditions.
  */
-class SourceConditionCombination extends AbstractSourceCondition implements SourceConditionCombinationInterface
+class SourceConditionCombination implements SourceConditionCombinationInterface
 {
-    /**
-     * @var SourceConditionInterface[]
-     */
-    private $conditions;
-
-    /**
-     * @var ValidatorContainerInterface
-     */
-    private $validators;
+    use SourceConditionTrait;
+    use SourceConditionCombinationTrait;
+    use ValidatorDependentTrait;
 
     /**
      * Constructor.
@@ -31,7 +25,7 @@ class SourceConditionCombination extends AbstractSourceCondition implements Sour
      */
     public function __construct(ValidatorContainerInterface $validators)
     {
-        $this->validators = $validators;
+        $this->setValidators($validators);
     }
 
     /**
@@ -43,8 +37,8 @@ class SourceConditionCombination extends AbstractSourceCondition implements Sour
      */
     public function isValid(ArrayAccess $item): bool
     {
-        $closures[] = array_map(
-            function (SourceConditionInterface $condition) use ($item): callable {
+        $closures = array_map(
+            function (SourceConditionInterface $condition) use ($item) : callable {
                 return function () use ($condition, $item) {
                     return $condition->isValid($item);
                 };
@@ -60,63 +54,16 @@ class SourceConditionCombination extends AbstractSourceCondition implements Sour
      *
      * @param string[] $entityIds
      *
-     * @return SourceConditionInterface
+     * @return void
      */
-    public function prepare(array $entityIds): SourceConditionInterface
+    public function prepare(array $entityIds)
     {
+        $conditions = $this->getConditions();
         array_walk(
-            $this->conditions,
+            $conditions,
             function (SourceConditionInterface $condition) use ($entityIds) {
                 $condition->prepare($entityIds);
             }
         );
-
-        return $this;
-    }
-
-    /**
-     * Set the conditions.
-     *
-     * @param SourceConditionInterface[] $conditions
-     *
-     * @return SourceConditionCombinationInterface
-     */
-    public function setConditions(array $conditions): SourceConditionCombinationInterface
-    {
-        $this->conditions = $conditions;
-        return $this;
-    }
-
-    /**
-     * Get the conditions.
-     *
-     * @return SourceConditionInterface[]
-     */
-    protected function getConditions(): array
-    {
-        return $this->conditions;
-    }
-
-    /**
-     * Get the validators container.
-     *
-     * @return ValidatorContainerInterface
-     */
-    protected function getValidators(): ValidatorContainerInterface
-    {
-        return $this->validators;
-    }
-
-    /**
-     * Get the validator for the operator.
-     *
-     * @param ArrayAccess $item
-     *
-     * @return callable
-     */
-    protected function getOperatorValidator(ArrayAccess $item): callable
-    {
-        return $this->getValidators()
-            ->getValidator($this->getOperator(), $item);
     }
 }

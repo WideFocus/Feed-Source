@@ -16,7 +16,7 @@ interface SourceConditionCombinationInterface extends SourceConditionInterface
      *
      * @param SourceConditionInterface[] $conditions
      *
-     * @return SourceConditionCombinationInterface
+     * @return void
      */
-    public function setConditions(array $conditions): SourceConditionCombinationInterface;
+    public function setConditions(array $conditions);
 }
