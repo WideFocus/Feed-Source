@@ -6,7 +6,10 @@
 
 namespace WideFocus\Feed\Source\Condition;
 
-abstract class AbstractSourceCondition implements SourceConditionInterface
+/**
+ * Trait to implement SourceConditionInterface.
+ */
+trait SourceConditionTrait
 {
     /**
      * @var string
@@ -28,12 +31,11 @@ abstract class AbstractSourceCondition implements SourceConditionInterface
      *
      * @param string $attributeCode
      *
-     * @return SourceConditionInterface
+     * @return void
      */
-    public function setAttributeCode(string $attributeCode): SourceConditionInterface
+    public function setAttributeCode(string $attributeCode)
     {
         $this->attributeCode = $attributeCode;
-        return $this;
     }
 
     /**
@@ -51,12 +53,11 @@ abstract class AbstractSourceCondition implements SourceConditionInterface
      *
      * @param string $operator
      *
-     * @return SourceConditionInterface
+     * @return void
      */
-    public function setOperator(string $operator): SourceConditionInterface
+    public function setOperator(string $operator)
     {
         $this->operator = $operator;
-        return $this;
     }
 
     /**
@@ -74,12 +75,11 @@ abstract class AbstractSourceCondition implements SourceConditionInterface
      *
      * @param mixed $value
      *
-     * @return SourceConditionInterface
+     * @return void
      */
-    public function setValue($value): SourceConditionInterface
+    public function setValue($value)
     {
         $this->value = $value;
-        return $this;
     }
 
     /**

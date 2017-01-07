@@ -27,34 +27,34 @@ interface SourceConditionInterface
      *
      * @param string[] $entityIds
      *
-     * @return SourceConditionInterface
+     * @return void
      */
-    public function prepare(array $entityIds): SourceConditionInterface;
+    public function prepare(array $entityIds);
 
     /**
      * Set the attribute code.
      *
      * @param string $attributeCode
      *
-     * @return SourceConditionInterface
+     * @return void
      */
-    public function setAttributeCode(string $attributeCode): SourceConditionInterface;
+    public function setAttributeCode(string $attributeCode);
 
     /**
      * Set the operator.
      *
      * @param string $operator
      *
-     * @return SourceConditionInterface
+     * @return void
      */
-    public function setOperator(string $operator): SourceConditionInterface;
+    public function setOperator(string $operator);
 
     /**
      * Set the value.
      *
      * @param mixed $value
      *
-     * @return SourceConditionInterface
+     * @return void
      */
-    public function setValue($value): SourceConditionInterface;
+    public function setValue($value);
 }
