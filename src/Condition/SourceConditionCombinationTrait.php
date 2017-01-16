@@ -17,15 +17,15 @@ trait SourceConditionCombinationTrait
     private $conditions = [];
 
     /**
-     * Set the conditions.
+     * Add a condition.
      *
-     * @param SourceConditionInterface[] $conditions
+     * @param SourceConditionInterface $condition
      *
      * @return void
      */
-    public function setConditions(array $conditions)
+    public function addCondition(SourceConditionInterface $condition)
     {
-        $this->conditions = $conditions;
+        $this->conditions[] = $condition;
     }
 
     /**

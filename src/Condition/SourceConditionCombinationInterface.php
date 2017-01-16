@@ -12,11 +12,11 @@ namespace WideFocus\Feed\Source\Condition;
 interface SourceConditionCombinationInterface extends SourceConditionInterface
 {
     /**
-     * Set the conditions.
+     * Add a condition.
      *
-     * @param SourceConditionInterface[] $conditions
+     * @param SourceConditionInterface $condition
      *
      * @return void
      */
-    public function setConditions(array $conditions);
+    public function addCondition(SourceConditionInterface $condition);
 }
