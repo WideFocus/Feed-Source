@@ -6,7 +6,6 @@
 
 namespace WideFocus\Feed\Source\Condition;
 
-use ArrayAccess;
 use WideFocus\Feed\Source\Condition\Validator\ValidatorContainerInterface;
 
 trait ValidatorDependentTrait
@@ -41,14 +40,12 @@ trait ValidatorDependentTrait
     /**
      * Get the validator for the operator.
      *
-     * @param ArrayAccess $item
-     *
      * @return callable
      */
-    protected function getOperatorValidator(ArrayAccess $item): callable
+    protected function getOperatorValidator(): callable
     {
         return $this->getValidators()
-            ->getValidatorWithItem($this->getOperator(), $item);
+            ->getValidator($this->getOperator());
     }
 
     /**

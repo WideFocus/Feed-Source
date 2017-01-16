@@ -6,7 +6,6 @@
 
 namespace WideFocus\Feed\Source\Condition;
 
-use ArrayAccess;
 use WideFocus\Feed\Source\Condition\Validator\ValidatorContainerInterface;
 
 /**
@@ -29,24 +28,24 @@ class SourceConditionCombination implements SourceConditionCombinationInterface
     }
 
     /**
-     * Check whether an item matches the condition.
+     * Check whether an entity matches the condition.
      *
-     * @param ArrayAccess $item
+     * @param string $entityId
      *
      * @return bool
      */
-    public function isValid(ArrayAccess $item): bool
+    public function isValid(string $entityId): bool
     {
         $closures = array_map(
-            function (SourceConditionInterface $condition) use ($item) : callable {
-                return function () use ($condition, $item) {
-                    return $condition->isValid($item);
+            function (SourceConditionInterface $condition) use ($entityId) : callable {
+                return function () use ($condition, $entityId) {
+                    return $condition->isValid($entityId);
                 };
             },
             $this->getConditions()
         );
 
-        return call_user_func($this->getOperatorValidator($item), $closures);
+        return call_user_func($this->getOperatorValidator(), $closures);
     }
 
     /**

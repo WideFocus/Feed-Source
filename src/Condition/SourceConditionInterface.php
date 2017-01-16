@@ -6,21 +6,19 @@
 
 namespace WideFocus\Feed\Source\Condition;
 
-use ArrayAccess;
-
 /**
  * Validates a feed item.
  */
 interface SourceConditionInterface
 {
     /**
-     * Check whether an item matches the condition.
+     * Check whether an entity matches the condition.
      *
-     * @param ArrayAccess $item
+     * @param string $entityId
      *
      * @return bool
      */
-    public function isValid(ArrayAccess $item): bool;
+    public function isValid(string $entityId): bool;
 
     /**
      * Prepare for a set of entities.
