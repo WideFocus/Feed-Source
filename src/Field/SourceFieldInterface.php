@@ -6,37 +6,35 @@
 
 namespace WideFocus\Feed\Source\Field;
 
-use ArrayAccess;
-
 /**
  * Applies values on a feed item.
  */
 interface SourceFieldInterface
 {
     /**
-     * Apply the field value to a data object.
+     * Get the field value for an entity.
      *
-     * @param ArrayAccess $item
+     * @param string $entityId
      *
-     * @return SourceFieldInterface
+     * @return mixed
      */
-    public function applyValue(ArrayAccess $item): SourceFieldInterface;
+    public function getValue(string $entityId);
 
     /**
      * Prepare for a set of entities.
      *
      * @param string[] $entityIds
      *
-     * @return SourceFieldInterface
+     * @return void
      */
-    public function prepare(array $entityIds): SourceFieldInterface;
+    public function prepare(array $entityIds);
 
     /**
      * Set the code of the attribute.
      *
      * @param string $attributeCode
      *
-     * @return SourceFieldInterface
+     * @return void
      */
-    public function setAttributeCode(string $attributeCode): SourceFieldInterface;
+    public function setAttributeCode(string $attributeCode);
 }
