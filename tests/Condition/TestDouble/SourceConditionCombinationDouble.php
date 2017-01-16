@@ -6,7 +6,6 @@
 
 namespace WideFocus\Feed\Source\Tests\Condition\TestDouble;
 
-use ArrayAccess;
 use WideFocus\Feed\Source\Condition\SourceConditionCombinationInterface;
 use WideFocus\Feed\Source\Condition\SourceConditionCombinationTrait;
 use WideFocus\Feed\Source\Condition\SourceConditionTrait;
@@ -17,13 +16,13 @@ class SourceConditionCombinationDouble implements SourceConditionCombinationInte
     use SourceConditionCombinationTrait;
 
     /**
-     * Check whether an item matches the condition.
+     * Check whether an entity matches the condition.
      *
-     * @param ArrayAccess $item
+     * @param string $entityId
      *
      * @return bool
      */
-    public function isValid(ArrayAccess $item): bool
+    public function isValid(string $entityId): bool
     {
         return true;
     }

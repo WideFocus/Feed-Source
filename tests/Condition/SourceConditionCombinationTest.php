@@ -10,14 +10,14 @@ use PHPUnit_Framework_MockObject_MockObject;
 use PHPUnit_Framework_TestCase;
 use WideFocus\Feed\Source\Condition\SourceConditionCombination;
 use WideFocus\Feed\Source\Condition\SourceConditionInterface;
+use WideFocus\Feed\Source\Condition\Validator\ValidatorContainerInterface;
+use WideFocus\Validator\ValidatorInterface;
 
 /**
  * @coversDefaultClass \WideFocus\Feed\Source\Condition\SourceConditionCombination
  */
 class SourceConditionCombinationTest extends PHPUnit_Framework_TestCase
 {
-    use CommonSourceConditionMocksTrait;
-
     /**
      * @return SourceConditionCombination
      *
@@ -25,9 +25,9 @@ class SourceConditionCombinationTest extends PHPUnit_Framework_TestCase
      */
     public function testConstructor(): SourceConditionCombination
     {
-        return new SourceConditionCombination(
-            $this->createValidatorContainerMock()
-        );
+        /** @var ValidatorContainerInterface|PHPUnit_Framework_MockObject_MockObject $validators */
+        $validators = $this->createMock(ValidatorContainerInterface::class);
+        return new SourceConditionCombination($validators);
     }
 
     /**
@@ -39,23 +39,25 @@ class SourceConditionCombinationTest extends PHPUnit_Framework_TestCase
     {
         $entityIds = [41, 42, 43];
 
-        $conditions = [
-            $this->createConditionMock(),
-            $this->createConditionMock()
+        /** @var SourceConditionInterface[]|PHPUnit_Framework_MockObject_MockObject[] $children */
+        $children = [
+            $this->createMock(SourceConditionInterface::class),
+            $this->createMock(SourceConditionInterface::class)
         ];
 
-        /** @var PHPUnit_Framework_MockObject_MockObject $child */
-        foreach ($conditions as $child) {
+        /** @var ValidatorContainerInterface|PHPUnit_Framework_MockObject_MockObject $validators */
+        $validators = $this->createMock(ValidatorContainerInterface::class);
+        $condition  = new SourceConditionCombination($validators);
+
+        /** @var PHPUnit_Framework_MockObject_MockObject|SourceConditionInterface $child */
+        foreach ($children as $child) {
             $child->expects($this->once())
                 ->method('prepare')
                 ->with($entityIds);
+
+            $condition->addCondition($child);
         }
 
-        $condition = new SourceConditionCombination(
-            $this->createValidatorContainerMock()
-        );
-
-        $condition->setConditions($conditions);
         $condition->prepare($entityIds);
     }
 
@@ -66,9 +68,10 @@ class SourceConditionCombinationTest extends PHPUnit_Framework_TestCase
      */
     public function testIsValid()
     {
-        $item = $this->createArrayAccessMock();
+        $entityId = 41;
 
-        $validator = $this->createValidatorMock();
+        /** @var ValidatorInterface|PHPUnit_Framework_MockObject_MockObject $validator */
+        $validator = $this->createMock(ValidatorInterface::class);
         $validator->expects($this->once())
             ->method('__invoke')
             ->willReturnCallback(
@@ -81,29 +84,30 @@ class SourceConditionCombinationTest extends PHPUnit_Framework_TestCase
                 }
             );
 
-        $validators = $this->createValidatorContainerMock();
+        /** @var ValidatorContainerInterface|PHPUnit_Framework_MockObject_MockObject $validators */
+        $validators = $this->createMock(ValidatorContainerInterface::class);
         $validators->expects($this->once())
-            ->method('getValidatorWithItem')
-            ->with('logical_and', $item)
+            ->method('getValidator')
+            ->with('logical_and')
             ->willReturn($validator);
-
-        $conditions = [
-            $this->createConditionMock(),
-            $this->createConditionMock()
-        ];
-
-        /** @var PHPUnit_Framework_MockObject_MockObject $child */
-        foreach ($conditions as $child) {
-            $child->expects($this->once())
-                ->method('isValid')
-                ->with($item)
-                ->willReturn(true);
-        }
 
         $condition = new SourceConditionCombination($validators);
 
-        $condition->setConditions($conditions);
+        /** @var SourceConditionInterface[]|PHPUnit_Framework_MockObject_MockObject[] $children */
+        $children = [
+            $this->createMock(SourceConditionInterface::class),
+            $this->createMock(SourceConditionInterface::class)
+        ];
+        foreach ($children as $child) {
+            $child->expects($this->once())
+                ->method('isValid')
+                ->with($entityId)
+                ->willReturn(true);
+
+            $condition->addCondition($child);
+        }
+
         $condition->setOperator('logical_and');
-        $this->assertTrue($condition->isValid($item));
+        $this->assertTrue($condition->isValid($entityId));
     }
 }

@@ -9,14 +9,13 @@ namespace WideFocus\Feed\Source\Tests\Condition;
 use PHPUnit_Framework_TestCase;
 use WideFocus\Feed\Source\Condition\Validator\ValidatorContainerInterface;
 use WideFocus\Feed\Source\Tests\Condition\TestDouble\ValidatorDependentDouble;
+use WideFocus\Validator\ValidatorInterface;
 
 /**
  * @coversDefaultClass \WideFocus\Feed\Source\Condition\ValidatorDependentTrait
  */
 class ValidatorDependentTraitTest extends PHPUnit_Framework_TestCase
 {
-    use CommonSourceConditionMocksTrait;
-
     /**
      * @param ValidatorContainerInterface $validators
      *
@@ -40,17 +39,18 @@ class ValidatorDependentTraitTest extends PHPUnit_Framework_TestCase
      */
     public function testGetOperatorValidator()
     {
-        $item       = $this->createArrayAccessMock();
-        $validator  = $this->createValidatorMock();
-        $validators = $this->createValidatorContainerMock();
+        /** @var ValidatorInterface|\PHPUnit_Framework_MockObject_MockObject $validator */
+        $validator  = $this->createMock(ValidatorInterface::class);
 
+        /** @var ValidatorContainerInterface|\PHPUnit_Framework_MockObject_MockObject $validators */
+        $validators = $this->createMock(ValidatorContainerInterface::class);
         $validators->expects($this->once())
-            ->method('getValidatorWithItem')
-            ->with('the_operator', $item)
+            ->method('getValidator')
+            ->with('the_operator')
             ->willReturn($validator);
 
         $condition = new ValidatorDependentDouble($validators);
-        $this->assertEquals($validator, $condition->peekOperatorValidator($item));
+        $this->assertEquals($validator, $condition->peekOperatorValidator());
     }
 
     /**
@@ -60,7 +60,7 @@ class ValidatorDependentTraitTest extends PHPUnit_Framework_TestCase
     {
         return [
             [
-                $this->createValidatorContainerMock()
+                $this->createMock(ValidatorContainerInterface::class)
             ]
         ];
     }

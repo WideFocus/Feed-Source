@@ -6,19 +6,19 @@
 
 namespace WideFocus\Feed\Source\Tests\Condition\Validator;
 
+use ArrayAccess;
 use PHPUnit_Framework_MockObject_MockObject;
 use PHPUnit_Framework_TestCase;
 use WideFocus\Feed\Source\Condition\Validator\ValidatorContainer;
 use WideFocus\Feed\Source\Tests\Condition\CommonSourceConditionMocksTrait;
 use WideFocus\Validator\ContextAwareValidatorInterface;
+use WideFocus\Validator\ValidatorInterface;
 
 /**
  * @coversDefaultClass \WideFocus\Feed\Source\Condition\Validator\ValidatorContainer
  */
 class ValidatorContainerTest extends PHPUnit_Framework_TestCase
 {
-    use CommonSourceConditionMocksTrait;
-
     /**
      * @param array $validators
      *
@@ -70,7 +70,9 @@ class ValidatorContainerTest extends PHPUnit_Framework_TestCase
     public function testGetValidatorWithItem(array $validators)
     {
         $container = new ValidatorContainer();
-        $item      = $this->createArrayAccessMock();
+
+        /** @var ArrayAccess|PHPUnit_Framework_MockObject_MockObject $item */
+        $item = $this->createMock(ArrayAccess::class);
 
         foreach ($validators as $name => $validator) {
             $container->addValidator($validator, $name);
@@ -99,8 +101,8 @@ class ValidatorContainerTest extends PHPUnit_Framework_TestCase
         return [
             [
                 [
-                    'foo' => $this->createValidatorMock(),
-                    'bar' => $this->createContextAwareValidatorMock(),
+                    'foo' => $this->createMock(ValidatorInterface::class),
+                    'bar' => $this->createMock(ContextAwareValidatorInterface::class),
                     'quu' => function () {
                     }
                 ]

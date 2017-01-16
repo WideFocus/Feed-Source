@@ -15,13 +15,13 @@ class SourceConditionDouble implements SourceConditionInterface
     use SourceConditionTrait;
 
     /**
-     * Check whether an item matches the condition.
+     * Check whether an entity matches the condition.
      *
-     * @param ArrayAccess $item
+     * @param string $entityId
      *
      * @return bool
      */
-    public function isValid(ArrayAccess $item): bool
+    public function isValid(string $entityId): bool
     {
         return true;
     }

@@ -15,8 +15,6 @@ use WideFocus\Feed\Source\Tests\Condition\TestDouble\SourceConditionCombinationD
  */
 class SourceConditionCombinationTraitTest extends PHPUnit_Framework_TestCase
 {
-    use CommonSourceConditionMocksTrait;
-
     /**
      * @param SourceConditionInterface[] $conditions
      *
@@ -24,14 +22,15 @@ class SourceConditionCombinationTraitTest extends PHPUnit_Framework_TestCase
      *
      * @dataProvider dataProvider
      *
-     * @covers ::setConditions
+     * @covers ::addCondition
      * @covers ::getConditions
      */
     public function testSettersGetters(array $conditions)
     {
         $condition = new SourceConditionCombinationDouble();
-
-        $condition->setConditions($conditions);
+        foreach ($conditions as $child) {
+            $condition->addCondition($child);
+        }
 
         $this->assertEquals($conditions, $condition->peekConditions());
     }
@@ -44,8 +43,8 @@ class SourceConditionCombinationTraitTest extends PHPUnit_Framework_TestCase
         return [
             [
                 [
-                    $this->createConditionMock(),
-                    $this->createConditionMock()
+                    $this->createMock(SourceConditionInterface::class),
+                    $this->createMock(SourceConditionInterface::class)
                 ]
             ]
         ];

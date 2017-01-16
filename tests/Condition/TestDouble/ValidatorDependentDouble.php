@@ -43,12 +43,10 @@ class ValidatorDependentDouble
     }
 
     /**
-     * @param ArrayAccess $item
-     *
      * @return callable
      */
-    public function peekOperatorValidator(ArrayAccess $item): callable
+    public function peekOperatorValidator(): callable
     {
-        return $this->getOperatorValidator($item);
+        return $this->getOperatorValidator();
     }
 }
