@@ -17,9 +17,9 @@ interface ValueListInterface
      * @param string $entityId
      * @param mixed  $value
      *
-     * @return ValueListInterface
+     * @return void
      */
-    public function setEntityValue(string $entityId, $value): ValueListInterface;
+    public function setEntityValue(string $entityId, $value);
 
     /**
      * Get the value for an entity.
@@ -45,9 +45,9 @@ interface ValueListInterface
      *
      * @param mixed[] $values
      *
-     * @return ValueListInterface
+     * @return void
      */
-    public function setValues(array $values): ValueListInterface;
+    public function setValues(array $values);
 
     /**
      * Get values for all entities.
