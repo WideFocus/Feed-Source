@@ -7,10 +7,10 @@
 namespace WideFocus\Feed\Source\Tests\Iterator;
 
 use ArrayAccess;
-use ArrayObject;
 use WideFocus\Feed\Source\Field\SourceFieldCombinationInterface;
 use WideFocus\Feed\Source\Iterator\IdentityIteratorInterface;
 use WideFocus\Feed\Source\Iterator\IdentityToItemIterator;
+use WideFocus\Feed\Source\SourceItem;
 use WideFocus\Feed\Source\Tests\Iterator\TestDouble\IdentityIteratorDouble;
 
 /**
@@ -87,7 +87,7 @@ class IdentityToItemIteratorTest extends \PHPUnit_Framework_TestCase
 
         $expectedResult = array_map(
             function (array $values) : ArrayAccess {
-                return new ArrayObject($values);
+                return new SourceItem($values);
             },
             $fieldValues
         );
