@@ -7,10 +7,10 @@
 namespace WideFocus\Feed\Source\Iterator;
 
 use ArrayAccess;
-use ArrayObject;
 use Iterator;
 use IteratorIterator;
 use WideFocus\Feed\Source\Field\SourceFieldCombinationInterface;
+use WideFocus\Feed\Source\SourceItem;
 
 
 /**
@@ -90,7 +90,7 @@ class IdentityToItemIterator extends IteratorIterator implements SourceIteratorI
         return new MapCallbackIterator(
             $iterator,
             function (string $entityId) {
-                return new ArrayObject(
+                return new SourceItem(
                     $this->fields->getValue($entityId)
                 );
             }
