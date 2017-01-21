@@ -7,7 +7,7 @@
 namespace WideFocus\Feed\Source\Field;
 
 /**
- * Applies values on a feed item.
+ * Gets values for a feed item.
  */
 interface SourceFieldInterface
 {

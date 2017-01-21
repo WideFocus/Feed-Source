@@ -6,6 +6,9 @@
 
 namespace WideFocus\Feed\Source\Field;
 
+/**
+ * Contains a combination of fields.
+ */
 interface SourceFieldCombinationInterface extends SourceFieldInterface
 {
     /**

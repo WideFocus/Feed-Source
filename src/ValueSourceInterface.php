@@ -6,7 +6,7 @@
 
 namespace WideFocus\Feed\Source;
 
-interface EntityValueSourceInterface
+interface ValueSourceInterface
 {
     /**
      * Get entity values.
