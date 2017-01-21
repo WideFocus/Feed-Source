@@ -6,7 +6,6 @@
 
 namespace WideFocus\Feed\Source\Tests\Condition\TestDouble;
 
-use ArrayAccess;
 use WideFocus\Feed\Source\Condition\Validator\ValidatorContainerInterface;
 use WideFocus\Feed\Source\Condition\ValidatorDependentTrait;
 

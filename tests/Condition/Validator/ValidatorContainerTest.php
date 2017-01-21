@@ -10,7 +10,6 @@ use ArrayAccess;
 use PHPUnit_Framework_MockObject_MockObject;
 use PHPUnit_Framework_TestCase;
 use WideFocus\Feed\Source\Condition\Validator\ValidatorContainer;
-use WideFocus\Feed\Source\Tests\Condition\CommonSourceConditionMocksTrait;
 use WideFocus\Validator\ContextAwareValidatorInterface;
 use WideFocus\Validator\ValidatorInterface;
 
@@ -71,7 +70,6 @@ class ValidatorContainerTest extends PHPUnit_Framework_TestCase
     {
         $container = new ValidatorContainer();
 
-        /** @var ArrayAccess|PHPUnit_Framework_MockObject_MockObject $item */
         $item = $this->createMock(ArrayAccess::class);
 
         foreach ($validators as $name => $validator) {

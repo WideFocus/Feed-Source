@@ -39,10 +39,8 @@ class ValidatorDependentTraitTest extends PHPUnit_Framework_TestCase
      */
     public function testGetOperatorValidator()
     {
-        /** @var ValidatorInterface|\PHPUnit_Framework_MockObject_MockObject $validator */
         $validator  = $this->createMock(ValidatorInterface::class);
 
-        /** @var ValidatorContainerInterface|\PHPUnit_Framework_MockObject_MockObject $validators */
         $validators = $this->createMock(ValidatorContainerInterface::class);
         $validators->expects($this->once())
             ->method('getValidator')

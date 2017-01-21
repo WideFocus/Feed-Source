@@ -6,7 +6,6 @@
 
 namespace WideFocus\Feed\Source\Tests\Condition;
 
-use PHPUnit_Framework_MockObject_MockObject;
 use PHPUnit_Framework_TestCase;
 use WideFocus\Feed\Source\Condition\SourceConditionCombination;
 use WideFocus\Feed\Source\Condition\SourceConditionInterface;
@@ -25,9 +24,9 @@ class SourceConditionCombinationTest extends PHPUnit_Framework_TestCase
      */
     public function testConstructor(): SourceConditionCombination
     {
-        /** @var ValidatorContainerInterface|PHPUnit_Framework_MockObject_MockObject $validators */
-        $validators = $this->createMock(ValidatorContainerInterface::class);
-        return new SourceConditionCombination($validators);
+        return new SourceConditionCombination(
+            $this->createMock(ValidatorContainerInterface::class)
+        );
     }
 
     /**
@@ -39,17 +38,14 @@ class SourceConditionCombinationTest extends PHPUnit_Framework_TestCase
     {
         $entityIds = [41, 42, 43];
 
-        /** @var SourceConditionInterface[]|PHPUnit_Framework_MockObject_MockObject[] $children */
         $children = [
             $this->createMock(SourceConditionInterface::class),
             $this->createMock(SourceConditionInterface::class)
         ];
 
-        /** @var ValidatorContainerInterface|PHPUnit_Framework_MockObject_MockObject $validators */
         $validators = $this->createMock(ValidatorContainerInterface::class);
         $condition  = new SourceConditionCombination($validators);
 
-        /** @var PHPUnit_Framework_MockObject_MockObject|SourceConditionInterface $child */
         foreach ($children as $child) {
             $child->expects($this->once())
                 ->method('prepare')
@@ -70,7 +66,6 @@ class SourceConditionCombinationTest extends PHPUnit_Framework_TestCase
     {
         $entityId = 41;
 
-        /** @var ValidatorInterface|PHPUnit_Framework_MockObject_MockObject $validator */
         $validator = $this->createMock(ValidatorInterface::class);
         $validator->expects($this->once())
             ->method('__invoke')
@@ -84,7 +79,6 @@ class SourceConditionCombinationTest extends PHPUnit_Framework_TestCase
                 }
             );
 
-        /** @var ValidatorContainerInterface|PHPUnit_Framework_MockObject_MockObject $validators */
         $validators = $this->createMock(ValidatorContainerInterface::class);
         $validators->expects($this->once())
             ->method('getValidator')
@@ -93,7 +87,6 @@ class SourceConditionCombinationTest extends PHPUnit_Framework_TestCase
 
         $condition = new SourceConditionCombination($validators);
 
-        /** @var SourceConditionInterface[]|PHPUnit_Framework_MockObject_MockObject[] $children */
         $children = [
             $this->createMock(SourceConditionInterface::class),
             $this->createMock(SourceConditionInterface::class)

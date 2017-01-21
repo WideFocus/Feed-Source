@@ -8,7 +8,6 @@ namespace WideFocus\Feed\Source\Tests\Iterator;
 
 use ArrayAccess;
 use ArrayObject;
-use PHPUnit_Framework_MockObject_MockObject;
 use WideFocus\Feed\Source\Field\SourceFieldCombinationInterface;
 use WideFocus\Feed\Source\Iterator\IdentityIteratorInterface;
 use WideFocus\Feed\Source\Iterator\IdentityToItemIterator;
@@ -28,13 +27,11 @@ class IdentityToItemIteratorTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructor(): IdentityToItemIterator
     {
-        /** @var IdentityIteratorInterface|PHPUnit_Framework_MockObject_MockObject $identityIterator */
-        $identityIterator = $this->createMock(IdentityIteratorInterface::class);
-
-        /** @var SourceFieldCombinationInterface|PHPUnit_Framework_MockObject_MockObject $fields */
-        $fields = $this->createMock(SourceFieldCombinationInterface::class);
-
-        return new IdentityToItemIterator($identityIterator, $fields, 10);
+        return new IdentityToItemIterator(
+            $this->createMock(IdentityIteratorInterface::class),
+            $this->createMock(SourceFieldCombinationInterface::class),
+            10
+        );
     }
 
     /**
@@ -54,7 +51,6 @@ class IdentityToItemIteratorTest extends \PHPUnit_Framework_TestCase
     {
         $identityIterator = new IdentityIteratorDouble($entityIds);
 
-        /** @var SourceFieldCombinationInterface|PHPUnit_Framework_MockObject_MockObject $fields */
         $fields = $this->createMock(SourceFieldCombinationInterface::class);
         $fields->expects($this->exactly((int) ceil(count($entityIds) / 5)))
             ->method('prepare');

@@ -7,7 +7,6 @@
 namespace WideFocus\Feed\Source\Tests\Iterator;
 
 use ArrayIterator;
-use PHPUnit_Framework_MockObject_MockObject;
 use WideFocus\Feed\Source\Iterator\MapCallbackIterator;
 use WideFocus\Feed\Source\Tests\Iterator\TestDouble\InvokableDouble;
 
@@ -41,7 +40,6 @@ class MapCallbackIteratorTest extends \PHPUnit_Framework_TestCase
     {
         $mapping  = array_combine($input, $output);
 
-        /** @var InvokableDouble|PHPUnit_Framework_MockObject_MockObject $callback */
         $callback = $this->createMock(InvokableDouble::class);
         $callback->expects($this->exactly(count($input)))
             ->method('__invoke')

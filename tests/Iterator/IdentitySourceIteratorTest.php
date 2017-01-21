@@ -6,7 +6,6 @@
 
 namespace WideFocus\Feed\Source\Tests\Iterator;
 
-use PHPUnit_Framework_MockObject_MockObject;
 use PHPUnit_Framework_TestCase;
 use WideFocus\Feed\Source\IdentitySourceInterface;
 use WideFocus\Feed\Source\Iterator\IdentitySourceIterator;
@@ -21,9 +20,9 @@ class IdentitySourceIteratorTest extends PHPUnit_Framework_TestCase
      */
     public function testConstruct(): IdentitySourceIterator
     {
-        /** @var IdentitySourceInterface|PHPUnit_Framework_MockObject_MockObject $identitySource */
-        $identitySource = $this->createMock(IdentitySourceInterface::class);
-        return new IdentitySourceIterator($identitySource);
+        return new IdentitySourceIterator(
+            $this->createMock(IdentitySourceInterface::class)
+        );
     }
 
     /**
@@ -35,7 +34,6 @@ class IdentitySourceIteratorTest extends PHPUnit_Framework_TestCase
      */
     public function testIteration(array $entityIds)
     {
-        /** @var IdentitySourceInterface|PHPUnit_Framework_MockObject_MockObject $identitySource */
         $identitySource = $this->createMock(IdentitySourceInterface::class);
         $identitySource->expects($this->once())
             ->method('getEntityIds')

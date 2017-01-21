@@ -6,7 +6,6 @@
 
 namespace WideFocus\Feed\Source\Tests\Condition\TestDouble;
 
-use ArrayAccess;
 use WideFocus\Feed\Source\Condition\SourceConditionInterface;
 use WideFocus\Feed\Source\Condition\SourceConditionTrait;
 
