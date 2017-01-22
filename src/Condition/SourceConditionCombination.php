@@ -6,7 +6,7 @@
 
 namespace WideFocus\Feed\Source\Condition;
 
-use WideFocus\Feed\Source\Condition\Validator\ValidatorContainerInterface;
+use WideFocus\Feed\Source\Condition\Validator\ValidatorManagerInterface;
 
 /**
  * Contains a combination of conditions.
@@ -20,9 +20,9 @@ class SourceConditionCombination implements SourceConditionCombinationInterface
     /**
      * Constructor.
      *
-     * @param ValidatorContainerInterface $validators
+     * @param ValidatorManagerInterface $validators
      */
-    public function __construct(ValidatorContainerInterface $validators)
+    public function __construct(ValidatorManagerInterface $validators)
     {
         $this->setValidators($validators);
     }

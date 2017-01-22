@@ -6,13 +6,10 @@
 
 namespace WideFocus\Feed\Source\Condition\Validator;
 
-use ArrayAccess;
-use WideFocus\Validator\ContextAwareValidatorInterface;
-
 /**
  * Contains a list of named validators.
  */
-class ValidatorContainer implements ValidatorContainerInterface
+class ValidatorManager implements ValidatorManagerInterface
 {
     /**
      * @var callable[]
@@ -57,12 +54,12 @@ class ValidatorContainer implements ValidatorContainerInterface
      * @param callable $validator
      * @param string   $name
      *
-     * @return ValidatorContainerInterface
+     * @return ValidatorManagerInterface
      */
     public function addValidator(
         callable $validator,
         string $name
-    ): ValidatorContainerInterface {
+    ): ValidatorManagerInterface {
         $this->validators[$name] = $validator;
         return $this;
     }

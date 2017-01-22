@@ -6,12 +6,10 @@
 
 namespace WideFocus\Feed\Source\Condition\Validator;
 
-use ArrayAccess;
-
 /**
  * Contains a list of named validators.
  */
-interface ValidatorContainerInterface
+interface ValidatorManagerInterface
 {
     /**
      * Whether a validator exists.
@@ -39,10 +37,10 @@ interface ValidatorContainerInterface
      * @param callable $validator
      * @param string   $name
      *
-     * @return ValidatorContainerInterface
+     * @return ValidatorManagerInterface
      */
     public function addValidator(
         callable $validator,
         string $name
-    ): ValidatorContainerInterface;
+    ): ValidatorManagerInterface;
 }

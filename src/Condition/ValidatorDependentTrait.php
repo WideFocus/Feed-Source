@@ -6,23 +6,23 @@
 
 namespace WideFocus\Feed\Source\Condition;
 
-use WideFocus\Feed\Source\Condition\Validator\ValidatorContainerInterface;
+use WideFocus\Feed\Source\Condition\Validator\ValidatorManagerInterface;
 
 trait ValidatorDependentTrait
 {
     /**
-     * @var ValidatorContainerInterface
+     * @var ValidatorManagerInterface
      */
     private $validators;
 
     /**
      * Set the validators container.
      *
-     * @param ValidatorContainerInterface $validators
+     * @param ValidatorManagerInterface $validators
      *
      * @return void
      */
-    protected function setValidators(ValidatorContainerInterface $validators)
+    protected function setValidators(ValidatorManagerInterface $validators)
     {
         $this->validators = $validators;
     }
@@ -30,9 +30,9 @@ trait ValidatorDependentTrait
     /**
      * Get the validators container.
      *
-     * @return ValidatorContainerInterface
+     * @return ValidatorManagerInterface
      */
-    protected function getValidators(): ValidatorContainerInterface
+    protected function getValidators(): ValidatorManagerInterface
     {
         return $this->validators;
     }
