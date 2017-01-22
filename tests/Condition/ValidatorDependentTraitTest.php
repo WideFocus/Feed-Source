@@ -7,7 +7,7 @@
 namespace WideFocus\Feed\Source\Tests\Condition;
 
 use PHPUnit_Framework_TestCase;
-use WideFocus\Feed\Source\Condition\Validator\ValidatorContainerInterface;
+use WideFocus\Feed\Source\Condition\Validator\ValidatorManagerInterface;
 use WideFocus\Feed\Source\Tests\Condition\TestDouble\ValidatorDependentDouble;
 use WideFocus\Validator\ValidatorInterface;
 
@@ -17,7 +17,7 @@ use WideFocus\Validator\ValidatorInterface;
 class ValidatorDependentTraitTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * @param ValidatorContainerInterface $validators
+     * @param ValidatorManagerInterface $validators
      *
      * @return void
      *
@@ -26,7 +26,7 @@ class ValidatorDependentTraitTest extends PHPUnit_Framework_TestCase
      * @covers ::setValidators
      * @covers ::getValidators
      */
-    public function testSetterGetter(ValidatorContainerInterface $validators)
+    public function testSetterGetter(ValidatorManagerInterface $validators)
     {
         $condition = new ValidatorDependentDouble($validators);
         $this->assertEquals($validators, $condition->peekValidators());
@@ -41,7 +41,7 @@ class ValidatorDependentTraitTest extends PHPUnit_Framework_TestCase
     {
         $validator  = $this->createMock(ValidatorInterface::class);
 
-        $validators = $this->createMock(ValidatorContainerInterface::class);
+        $validators = $this->createMock(ValidatorManagerInterface::class);
         $validators->expects($this->once())
             ->method('getValidator')
             ->with('the_operator')
@@ -58,7 +58,7 @@ class ValidatorDependentTraitTest extends PHPUnit_Framework_TestCase
     {
         return [
             [
-                $this->createMock(ValidatorContainerInterface::class)
+                $this->createMock(ValidatorManagerInterface::class)
             ]
         ];
     }

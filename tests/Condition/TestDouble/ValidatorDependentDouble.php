@@ -6,7 +6,7 @@
 
 namespace WideFocus\Feed\Source\Tests\Condition\TestDouble;
 
-use WideFocus\Feed\Source\Condition\Validator\ValidatorContainerInterface;
+use WideFocus\Feed\Source\Condition\Validator\ValidatorManagerInterface;
 use WideFocus\Feed\Source\Condition\ValidatorDependentTrait;
 
 class ValidatorDependentDouble
@@ -16,9 +16,9 @@ class ValidatorDependentDouble
     /**
      * Constructor.
      *
-     * @param ValidatorContainerInterface $validators
+     * @param ValidatorManagerInterface $validators
      */
-    public function __construct(ValidatorContainerInterface $validators)
+    public function __construct(ValidatorManagerInterface $validators)
     {
         $this->setValidators($validators);
     }
@@ -34,9 +34,9 @@ class ValidatorDependentDouble
     }
 
     /**
-     * @return ValidatorContainerInterface
+     * @return ValidatorManagerInterface
      */
-    public function peekValidators(): ValidatorContainerInterface
+    public function peekValidators(): ValidatorManagerInterface
     {
         return $this->getValidators();
     }

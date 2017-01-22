@@ -6,17 +6,15 @@
 
 namespace WideFocus\Feed\Source\Tests\Condition\Validator;
 
-use ArrayAccess;
-use PHPUnit_Framework_MockObject_MockObject;
 use PHPUnit_Framework_TestCase;
-use WideFocus\Feed\Source\Condition\Validator\ValidatorContainer;
+use WideFocus\Feed\Source\Condition\Validator\ValidatorManager;
 use WideFocus\Validator\ContextAwareValidatorInterface;
 use WideFocus\Validator\ValidatorInterface;
 
 /**
- * @coversDefaultClass \WideFocus\Feed\Source\Condition\Validator\ValidatorContainer
+ * @coversDefaultClass \WideFocus\Feed\Source\Condition\Validator\ValidatorManager
  */
-class ValidatorContainerTest extends PHPUnit_Framework_TestCase
+class ValidatorManagerTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @param array $validators
@@ -31,7 +29,7 @@ class ValidatorContainerTest extends PHPUnit_Framework_TestCase
      */
     public function testGettersSetters(array $validators)
     {
-        $container = new ValidatorContainer();
+        $container = new ValidatorManager();
         foreach ($validators as $name => $validator) {
             $container->addValidator($validator, $name);
         }
@@ -53,7 +51,7 @@ class ValidatorContainerTest extends PHPUnit_Framework_TestCase
      */
     public function testGetValidatorException()
     {
-        $container = new ValidatorContainer();
+        $container = new ValidatorManager();
         $container->getValidator('invalid');
     }
 

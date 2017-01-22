@@ -9,7 +9,7 @@ namespace WideFocus\Feed\Source\Tests\Condition;
 use PHPUnit_Framework_TestCase;
 use WideFocus\Feed\Source\Condition\SourceConditionCombination;
 use WideFocus\Feed\Source\Condition\SourceConditionInterface;
-use WideFocus\Feed\Source\Condition\Validator\ValidatorContainerInterface;
+use WideFocus\Feed\Source\Condition\Validator\ValidatorManagerInterface;
 use WideFocus\Validator\ValidatorInterface;
 
 /**
@@ -25,7 +25,7 @@ class SourceConditionCombinationTest extends PHPUnit_Framework_TestCase
     public function testConstructor(): SourceConditionCombination
     {
         return new SourceConditionCombination(
-            $this->createMock(ValidatorContainerInterface::class)
+            $this->createMock(ValidatorManagerInterface::class)
         );
     }
 
@@ -43,7 +43,7 @@ class SourceConditionCombinationTest extends PHPUnit_Framework_TestCase
             $this->createMock(SourceConditionInterface::class)
         ];
 
-        $validators = $this->createMock(ValidatorContainerInterface::class);
+        $validators = $this->createMock(ValidatorManagerInterface::class);
         $condition  = new SourceConditionCombination($validators);
 
         foreach ($children as $child) {
@@ -79,7 +79,7 @@ class SourceConditionCombinationTest extends PHPUnit_Framework_TestCase
                 }
             );
 
-        $validators = $this->createMock(ValidatorContainerInterface::class);
+        $validators = $this->createMock(ValidatorManagerInterface::class);
         $validators->expects($this->once())
             ->method('getValidator')
             ->with('logical_and')
