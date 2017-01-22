@@ -34,21 +34,6 @@ interface ValidatorContainerInterface
     public function getValidator(string $name): callable;
 
     /**
-     * Get a validator with a context item.
-     *
-     * @param string      $name
-     * @param ArrayAccess $item
-     *
-     * @return callable
-     *
-     * @throws InvalidValidatorException When the validator does not exist.
-     */
-    public function getValidatorWithItem(
-        string $name,
-        ArrayAccess $item
-    ): callable;
-
-    /**
      * Add a validator.
      *
      * @param callable $validator

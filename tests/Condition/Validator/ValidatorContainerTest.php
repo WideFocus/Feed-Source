@@ -58,40 +58,6 @@ class ValidatorContainerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param array $validators
-     *
-     * @return void
-     *
-     * @dataProvider validatorsProvider
-     *
-     * @covers ::getValidatorWithItem
-     */
-    public function testGetValidatorWithItem(array $validators)
-    {
-        $container = new ValidatorContainer();
-
-        $item = $this->createMock(ArrayAccess::class);
-
-        foreach ($validators as $name => $validator) {
-            $container->addValidator($validator, $name);
-            if ($validator instanceof ContextAwareValidatorInterface
-                && $validator instanceof PHPUnit_Framework_MockObject_MockObject
-            ) {
-                $validator->expects($this->once())
-                    ->method('setContext')
-                    ->with($item);
-            }
-        }
-
-        foreach (array_keys($validators) as $name) {
-            $this->assertEquals(
-                $validators[$name],
-                $container->getValidatorWithItem($name, $item)
-            );
-        }
-    }
-
-    /**
      * @return array
      */
     public function validatorsProvider(): array
@@ -101,7 +67,7 @@ class ValidatorContainerTest extends PHPUnit_Framework_TestCase
                 [
                     'foo' => $this->createMock(ValidatorInterface::class),
                     'bar' => $this->createMock(ContextAwareValidatorInterface::class),
-                    'quu' => function () {
+                    'baz' => function () {
                     }
                 ]
             ]

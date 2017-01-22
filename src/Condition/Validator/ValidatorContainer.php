@@ -52,28 +52,6 @@ class ValidatorContainer implements ValidatorContainerInterface
     }
 
     /**
-     * Get a validator with a context item.
-     *
-     * @param string      $name
-     * @param ArrayAccess $item
-     *
-     * @return callable
-     *
-     * @throws InvalidValidatorException When the validator does not exist.
-     */
-    public function getValidatorWithItem(
-        string $name,
-        ArrayAccess $item
-    ): callable {
-        $validator = $this->getValidator($name);
-        if ($validator instanceof ContextAwareValidatorInterface) {
-            $validator->setContext($item);
-        }
-
-        return $validator;
-    }
-
-    /**
      * Add a validator.
      *
      * @param callable $validator
