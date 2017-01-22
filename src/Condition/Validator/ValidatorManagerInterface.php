@@ -12,15 +12,6 @@ namespace WideFocus\Feed\Source\Condition\Validator;
 interface ValidatorManagerInterface
 {
     /**
-     * Whether a validator exists.
-     *
-     * @param string $name
-     *
-     * @return bool
-     */
-    public function hasValidator(string $name): bool;
-
-    /**
      * Get a validator.
      *
      * @param string $name
@@ -37,10 +28,7 @@ interface ValidatorManagerInterface
      * @param callable $validator
      * @param string   $name
      *
-     * @return ValidatorManagerInterface
+     * @return void
      */
-    public function addValidator(
-        callable $validator,
-        string $name
-    ): ValidatorManagerInterface;
+    public function addValidator(callable $validator, string $name);
 }

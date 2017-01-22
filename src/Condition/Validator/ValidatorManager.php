@@ -17,18 +17,6 @@ class ValidatorManager implements ValidatorManagerInterface
     private $validators = [];
 
     /**
-     * Whether a validator exists.
-     *
-     * @param string $name
-     *
-     * @return bool
-     */
-    public function hasValidator(string $name): bool
-    {
-        return array_key_exists($name, $this->validators);
-    }
-
-    /**
      * Get a validator.
      *
      * @param string $name
@@ -54,13 +42,10 @@ class ValidatorManager implements ValidatorManagerInterface
      * @param callable $validator
      * @param string   $name
      *
-     * @return ValidatorManagerInterface
+     * @return void
      */
-    public function addValidator(
-        callable $validator,
-        string $name
-    ): ValidatorManagerInterface {
+    public function addValidator(callable $validator, string $name)
+    {
         $this->validators[$name] = $validator;
-        return $this;
     }
 }
