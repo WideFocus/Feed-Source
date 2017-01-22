@@ -24,7 +24,6 @@ class ValidatorManagerTest extends PHPUnit_Framework_TestCase
      * @dataProvider validatorsProvider
      *
      * @covers ::addValidator
-     * @covers ::hasValidator
      * @covers ::getValidator
      */
     public function testGettersSetters(array $validators)
@@ -35,11 +34,8 @@ class ValidatorManagerTest extends PHPUnit_Framework_TestCase
         }
 
         foreach (array_keys($validators) as $name) {
-            $this->assertTrue($container->hasValidator($name));
             $this->assertEquals($validators[$name], $container->getValidator($name));
         }
-
-        $this->assertFalse($container->hasValidator('invalid'));
     }
 
     /**
