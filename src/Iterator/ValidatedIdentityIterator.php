@@ -88,7 +88,7 @@ class ValidatedIdentityIterator extends IteratorIterator implements IdentityIter
         return new CallbackFilterIterator(
             $iterator,
             function (string $entityId) : bool {
-                return $this->conditions->isValid($entityId);
+                return $this->conditions->matches($entityId);
             }
         );
     }

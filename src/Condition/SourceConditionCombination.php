@@ -34,12 +34,12 @@ class SourceConditionCombination implements SourceConditionCombinationInterface
      *
      * @return bool
      */
-    public function isValid(string $entityId): bool
+    public function matches(string $entityId): bool
     {
         $closures = array_map(
             function (SourceConditionInterface $condition) use ($entityId) : callable {
                 return function () use ($condition, $entityId) {
-                    return $condition->isValid($entityId);
+                    return $condition->matches($entityId);
                 };
             },
             $this->getConditions()

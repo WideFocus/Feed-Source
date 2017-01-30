@@ -101,6 +101,6 @@ class SourceConditionCombinationTest extends PHPUnit_Framework_TestCase
         }
 
         $condition->setOperator('logical_and');
-        $this->assertTrue($condition->isValid($entityId));
+        $this->assertTrue($condition->matches($entityId));
     }
 }

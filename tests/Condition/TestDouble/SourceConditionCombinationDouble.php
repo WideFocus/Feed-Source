@@ -22,7 +22,7 @@ class SourceConditionCombinationDouble implements SourceConditionCombinationInte
      *
      * @return bool
      */
-    public function isValid(string $entityId): bool
+    public function matches(string $entityId): bool
     {
         return true;
     }

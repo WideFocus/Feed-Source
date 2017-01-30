@@ -18,7 +18,7 @@ interface SourceConditionInterface
      *
      * @return bool
      */
-    public function isValid(string $entityId): bool;
+    public function matches(string $entityId): bool;
 
     /**
      * Prepare for a set of entities.
