@@ -47,7 +47,7 @@ class SourceFieldCombinationTest extends PHPUnit_Framework_TestCase
      *
      * @covers ::getValue
      */
-    public function testIsValid()
+    public function testGetValue()
     {
         $entityId = 41;
 

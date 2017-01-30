@@ -60,9 +60,9 @@ class SourceConditionCombinationTest extends PHPUnit_Framework_TestCase
     /**
      * @return void
      *
-     * @covers ::isValid
+     * @covers ::matches
      */
-    public function testIsValid()
+    public function testMatches()
     {
         $entityId = 41;
 
@@ -93,7 +93,7 @@ class SourceConditionCombinationTest extends PHPUnit_Framework_TestCase
         ];
         foreach ($children as $child) {
             $child->expects($this->once())
-                ->method('isValid')
+                ->method('matches')
                 ->with($entityId)
                 ->willReturn(true);
 

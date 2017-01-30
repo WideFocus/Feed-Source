@@ -53,7 +53,7 @@ class ValidatedIdentityIteratorTest extends \PHPUnit_Framework_TestCase
             ->method('prepare');
 
         $conditions->expects($this->exactly(count($entityIds)))
-            ->method('isValid')
+            ->method('matches')
             ->willReturnCallback(
                 function (int $value) : bool {
                     return $value % 2 == 0;
