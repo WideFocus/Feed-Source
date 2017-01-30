@@ -11,6 +11,9 @@ namespace WideFocus\Feed\Source\Condition;
  */
 interface SourceConditionCombinationInterface extends SourceConditionInterface
 {
+    const OPERATOR_AND = 'and';
+    const OPERATOR_OR  = 'or';
+
     /**
      * Add a condition.
      *
