@@ -15,10 +15,15 @@
         {
             "type": "vcs",
             "url": "https://bitbucket.org/widefocus/validator"
+        },
+        {
+            "type": "vcs",
+            "url": "https://bitbucket.org/widefocus/parameters"
         }
     ],
     "require": {
-        "php": "^7.0"
+        "php": "^7.0",
+        "widefocus/parameters": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.5",
