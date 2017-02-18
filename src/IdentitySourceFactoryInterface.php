@@ -6,8 +6,6 @@
 
 namespace WideFocus\Feed\Source;
 
-use WideFocus\Parameters\ParameterBagInterface;
-
 /**
  * Creates identity sources.
  */
@@ -16,11 +14,11 @@ interface IdentitySourceFactoryInterface
     /**
      * Create a source.
      *
-     * @param ParameterBagInterface $parameters
+     * @param SourceParametersInterface $parameters
      *
      * @return IdentitySourceInterface
      */
     public function createSource(
-        ParameterBagInterface $parameters
+        SourceParametersInterface $parameters
     ): IdentitySourceInterface;
 }
