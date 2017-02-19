@@ -1,5 +1,9 @@
 # WideFocus Feed Source
 
+[![Build Status](https://travis-ci.org/WideFocus/Feed-Source.svg?branch=master)](https://travis-ci.org/WideFocus/Feed-Source)
+[![Latest Stable Version](https://poser.pugx.org/widefocus/feed-source/v/stable)](https://packagist.org/packages/widefocus/feed-source)
+[![License](https://poser.pugx.org/widefocus/feed-source/license)](https://packagist.org/packages/widefocus/feed-source)
+
 This package contains models to use a feed source.
 
 ## Identity source
