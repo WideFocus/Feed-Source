@@ -52,6 +52,8 @@ class ChunkCallbackIterator implements Iterator
 
     /**
      * Return the current element.
+     *
+     * @return mixed
      */
     public function current()
     {
@@ -87,7 +89,7 @@ class ChunkCallbackIterator implements Iterator
      *
      * @return bool
      */
-    public function valid()
+    public function valid(): bool
     {
         return $this->chunkIterator->valid();
     }

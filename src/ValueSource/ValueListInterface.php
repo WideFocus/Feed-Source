@@ -4,7 +4,7 @@
  * https://www.widefocus.net
  */
 
-namespace WideFocus\Feed\Source;
+namespace WideFocus\Feed\Source\ValueSource;
 
 /**
  * Contains attributes values for a set of entities.
@@ -14,31 +14,31 @@ interface ValueListInterface
     /**
      * Set the value for an entity.
      *
-     * @param string $entityId
+     * @param string $key
      * @param mixed  $value
      *
      * @return void
      */
-    public function setEntityValue(string $entityId, $value);
+    public function set(string $key, $value);
 
     /**
      * Get the value for an entity.
      *
-     * @param string $entityId
+     * @param string $key
      * @param mixed  $default
      *
      * @return mixed
      */
-    public function getEntityValue(string $entityId, $default = null);
+    public function get(string $key, $default = null);
 
     /**
      * Check if an value is set for an entity.
      *
-     * @param string $entityId
+     * @param string $key
      *
      * @return bool
      */
-    public function hasEntityValue(string $entityId): bool;
+    public function has(string $key): bool;
 
     /**
      * Set values for all entities.
@@ -47,12 +47,12 @@ interface ValueListInterface
      *
      * @return void
      */
-    public function setValues(array $values);
+    public function load(array $values);
 
     /**
      * Get values for all entities.
      *
      * @return mixed[]
      */
-    public function getValues(): array;
+    public function all(): array;
 }

@@ -4,7 +4,7 @@
  * https://www.widefocus.net
  */
 
-namespace WideFocus\Feed\Source;
+namespace WideFocus\Feed\Source\ValueSource;
 
 /**
  * Contains a list of values for entities.
@@ -19,41 +19,41 @@ class ValueList implements ValueListInterface
     /**
      * Set the value for an entity.
      *
-     * @param string $entityId
+     * @param string $key
      * @param mixed  $value
      *
      * @return void
      */
-    public function setEntityValue(string $entityId, $value)
+    public function set(string $key, $value)
     {
-        $this->values[$entityId] = $value;
+        $this->values[$key] = $value;
     }
 
     /**
      * Get the value for an entity.
      *
-     * @param string $entityId
+     * @param string $key
      * @param mixed  $default
      *
      * @return mixed
      */
-    public function getEntityValue(string $entityId, $default = null)
+    public function get(string $key, $default = null)
     {
-        return array_key_exists($entityId, $this->values)
-            ? $this->values[$entityId]
+        return array_key_exists($key, $this->values)
+            ? $this->values[$key]
             : $default;
     }
 
     /**
      * Check if an value is set for an entity.
      *
-     * @param string $entityId
+     * @param string $key
      *
      * @return bool
      */
-    public function hasEntityValue(string $entityId): bool
+    public function has(string $key): bool
     {
-        return array_key_exists($entityId, $this->values);
+        return array_key_exists($key, $this->values);
     }
 
     /**
@@ -63,7 +63,7 @@ class ValueList implements ValueListInterface
      *
      * @return void
      */
-    public function setValues(array $values)
+    public function load(array $values)
     {
         $this->values = $values;
     }
@@ -73,7 +73,7 @@ class ValueList implements ValueListInterface
      *
      * @return mixed[]
      */
-    public function getValues(): array
+    public function all(): array
     {
         return $this->values;
     }

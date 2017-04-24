@@ -8,7 +8,7 @@ namespace WideFocus\Feed\Source\Iterator;
 
 use WideFocus\Feed\Source\Condition\SourceConditionInterface;
 use WideFocus\Feed\Source\Field\SourceFieldCombinationInterface;
-use WideFocus\Feed\Source\IdentitySourceInterface;
+use WideFocus\Feed\Source\IdentitySource\IdentitySourceInterface;
 
 class SourceIteratorFactory implements SourceIteratorFactoryInterface
 {
@@ -19,9 +19,10 @@ class SourceIteratorFactory implements SourceIteratorFactoryInterface
 
     /**
      * Constructor.
+     *
      * @param int $chunkSize
      */
-    public function __construct($chunkSize)
+    public function __construct(int $chunkSize)
     {
         $this->chunkSize = $chunkSize;
     }
@@ -35,7 +36,7 @@ class SourceIteratorFactory implements SourceIteratorFactoryInterface
      *
      * @return SourceIteratorInterface
      */
-    public function createIterator(
+    public function create(
         IdentitySourceInterface $source,
         SourceConditionInterface $conditions,
         SourceFieldCombinationInterface $fields

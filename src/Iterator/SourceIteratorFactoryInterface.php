@@ -8,7 +8,7 @@ namespace WideFocus\Feed\Source\Iterator;
 
 use WideFocus\Feed\Source\Condition\SourceConditionInterface;
 use WideFocus\Feed\Source\Field\SourceFieldCombinationInterface;
-use WideFocus\Feed\Source\IdentitySourceInterface;
+use WideFocus\Feed\Source\IdentitySource\IdentitySourceInterface;
 
 interface SourceIteratorFactoryInterface
 {
@@ -21,7 +21,7 @@ interface SourceIteratorFactoryInterface
      *
      * @return SourceIteratorInterface
      */
-    public function createIterator(
+    public function create(
         IdentitySourceInterface $source,
         SourceConditionInterface $conditions,
         SourceFieldCombinationInterface $fields

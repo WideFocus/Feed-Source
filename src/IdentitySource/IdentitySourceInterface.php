@@ -4,7 +4,7 @@
  * https://www.widefocus.net
  */
 
-namespace WideFocus\Feed\Source;
+namespace WideFocus\Feed\Source\IdentitySource;
 
 /**
  * Provides access to a data source to get entity ids.

@@ -10,8 +10,7 @@ use ArrayAccess;
 use Iterator;
 use IteratorIterator;
 use WideFocus\Feed\Source\Field\SourceFieldCombinationInterface;
-use WideFocus\Feed\Source\SourceItem;
-
+use WideFocus\Feed\Source\ValueSource\SourceItem;
 
 /**
  * Maps entity ids to value objects.
