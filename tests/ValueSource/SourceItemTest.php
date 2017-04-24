@@ -4,23 +4,27 @@
  * https://www.widefocus.net
  */
 
-namespace WideFocus\Feed\Source\Tests;
+namespace WideFocus\Feed\Source\Tests\ValueSource;
 
-use WideFocus\Feed\Source\SourceItem;
+use PHPUnit\Framework\TestCase;
+use WideFocus\Feed\Source\ValueSource\SourceItem;
 
 /**
- * @coversDefaultClass \WideFocus\Feed\Source\SourceItem
+ * @coversDefaultClass \WideFocus\Feed\Source\ValueSource\SourceItem
  */
-class SourceItemTest extends \PHPUnit_Framework_TestCase
+class SourceItemTest extends TestCase
 {
     /**
-     * @return SourceItem
+     * @return void
      *
      * @covers ::__construct
      */
-    public function testConstructor(): SourceItem
+    public function testConstructor()
     {
-        return new SourceItem();
+        $this->assertInstanceOf(
+            SourceItem::class,
+            new SourceItem()
+        );
     }
 
     /**

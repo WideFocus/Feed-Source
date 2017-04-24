@@ -6,39 +6,47 @@
 
 namespace WideFocus\Feed\Source\Tests\Iterator;
 
-use WideFocus\Feed\Source\Condition\SourceConditionCombinationInterface;
+use PHPUnit\Framework\TestCase;
+use WideFocus\Feed\Source\Condition\SourceConditionInterface;
 use WideFocus\Feed\Source\Field\SourceFieldCombinationInterface;
-use WideFocus\Feed\Source\IdentitySourceInterface;
+use WideFocus\Feed\Source\IdentitySource\IdentitySourceInterface;
 use WideFocus\Feed\Source\Iterator\SourceIteratorFactory;
 use WideFocus\Feed\Source\Iterator\SourceIteratorInterface;
 
 /**
  * @coversDefaultClass \WideFocus\Feed\Source\Iterator\SourceIteratorFactory
  */
-class SourceIteratorFactoryTest extends \PHPUnit_Framework_TestCase
+class SourceIteratorFactoryTest extends TestCase
 {
     /**
-     * @return SourceIteratorFactory
+     * @return void
      *
      * @covers ::__construct
      */
-    public function testConstruct(): SourceIteratorFactory
+    public function testConstructor()
     {
-        return new SourceIteratorFactory(5);
+        $this->assertInstanceOf(
+            SourceIteratorFactory::class,
+            new SourceIteratorFactory(5)
+        );
     }
 
     /**
-     * @return SourceIteratorInterface
+     * @return void
      *
-     * @covers ::createIterator
+     * @covers ::create
      */
-    public function testCreateIterator(): SourceIteratorInterface
+    public function testCreate()
     {
         $factory = new SourceIteratorFactory(5);
-        return $factory->createIterator(
-            $this->createMock(IdentitySourceInterface::class),
-            $this->createMock(SourceConditionCombinationInterface::class),
-            $this->createMock(SourceFieldCombinationInterface::class)
+
+        $this->assertInstanceOf(
+            SourceIteratorInterface::class,
+            $factory->create(
+                $this->createMock(IdentitySourceInterface::class),
+                $this->createMock(SourceConditionInterface::class),
+                $this->createMock(SourceFieldCombinationInterface::class)
+            )
         );
     }
 }

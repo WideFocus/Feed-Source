@@ -7,30 +7,34 @@
 namespace WideFocus\Feed\Source\Tests\Iterator;
 
 use ArrayAccess;
+use PHPUnit\Framework\TestCase;
 use WideFocus\Feed\Source\Field\SourceFieldCombinationInterface;
 use WideFocus\Feed\Source\Iterator\IdentityIteratorInterface;
 use WideFocus\Feed\Source\Iterator\IdentityToItemIterator;
-use WideFocus\Feed\Source\SourceItem;
 use WideFocus\Feed\Source\Tests\Iterator\TestDouble\IdentityIteratorDouble;
+use WideFocus\Feed\Source\ValueSource\SourceItem;
 
 /**
  * @coversDefaultClass \WideFocus\Feed\Source\Iterator\IdentityToItemIterator
  */
-class IdentityToItemIteratorTest extends \PHPUnit_Framework_TestCase
+class IdentityToItemIteratorTest extends TestCase
 {
     /**
-     * @return IdentityToItemIterator
+     * @return void
      *
      * @covers ::__construct
      * @covers ::createPreparingIterator
      * @covers ::createMappingIterator
      */
-    public function testConstructor(): IdentityToItemIterator
+    public function testConstructor()
     {
-        return new IdentityToItemIterator(
-            $this->createMock(IdentityIteratorInterface::class),
-            $this->createMock(SourceFieldCombinationInterface::class),
-            10
+        $this->assertInstanceOf(
+            IdentityToItemIterator::class,
+            new IdentityToItemIterator(
+                $this->createMock(IdentityIteratorInterface::class),
+                $this->createMock(SourceFieldCombinationInterface::class),
+                10
+            )
         );
     }
 

@@ -6,6 +6,7 @@
 
 namespace WideFocus\Feed\Source\Tests\Iterator;
 
+use PHPUnit\Framework\TestCase;
 use WideFocus\Feed\Source\Condition\SourceConditionInterface;
 use WideFocus\Feed\Source\Iterator\IdentityIteratorInterface;
 use WideFocus\Feed\Source\Iterator\ValidatedIdentityIterator;
@@ -14,21 +15,24 @@ use WideFocus\Feed\Source\Tests\Iterator\TestDouble\IdentityIteratorDouble;
 /**
  * @coversDefaultClass \WideFocus\Feed\Source\Iterator\ValidatedIdentityIterator
  */
-class ValidatedIdentityIteratorTest extends \PHPUnit_Framework_TestCase
+class ValidatedIdentityIteratorTest extends TestCase
 {
     /**
-     * @return ValidatedIdentityIterator
+     * @return void
      *
      * @covers ::__construct
      * @covers ::createPreparingIterator
      * @covers ::createValidatingIterator
      */
-    public function testConstructor(): ValidatedIdentityIterator
+    public function testConstructor()
     {
-        return new ValidatedIdentityIterator(
-            $this->createMock(IdentityIteratorInterface::class),
-            $this->createMock(SourceConditionInterface::class),
-            10
+        $this->assertInstanceOf(
+            ValidatedIdentityIterator::class,
+            new ValidatedIdentityIterator(
+                $this->createMock(IdentityIteratorInterface::class),
+                $this->createMock(SourceConditionInterface::class),
+                10
+            )
         );
     }
 
@@ -75,6 +79,7 @@ class ValidatedIdentityIteratorTest extends \PHPUnit_Framework_TestCase
     public function dataProvider(): array
     {
         $entityIds = range(1000, 1025);
+
         $expectedResult = array_filter(
             $entityIds,
             function (int $value) : bool {
@@ -89,5 +94,4 @@ class ValidatedIdentityIteratorTest extends \PHPUnit_Framework_TestCase
             ]
         ];
     }
-
 }

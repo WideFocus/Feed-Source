@@ -8,26 +8,30 @@ namespace WideFocus\Feed\Source\Tests\Iterator;
 
 use ArrayIterator;
 use Iterator;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use WideFocus\Feed\Source\Iterator\ChunkCallbackIterator;
 use WideFocus\Feed\Source\Tests\Iterator\TestDouble\InvokableDouble;
 
 /**
  * @coversDefaultClass \WideFocus\Feed\Source\Iterator\ChunkCallbackIterator
  */
-class ChunkCallbackIteratorTest extends PHPUnit_Framework_TestCase
+class ChunkCallbackIteratorTest extends TestCase
 {
     /**
-     * @return ChunkCallbackIterator
+     * @return void
      *
      * @covers ::__construct
      */
-    public function testConstructor(): ChunkCallbackIterator
+    public function testConstructor()
     {
-        return new ChunkCallbackIterator(
-            $this->createMock(Iterator::class),
-            function () {},
-            10
+        $this->assertInstanceOf(
+            ChunkCallbackIterator::class,
+            new ChunkCallbackIterator(
+                $this->createMock(Iterator::class),
+                function () {
+                },
+                10
+            )
         );
     }
 
@@ -35,6 +39,8 @@ class ChunkCallbackIteratorTest extends PHPUnit_Framework_TestCase
      * @param array $input
      * @param int   $chunkSize
      * @param array $expectedCalls
+     *
+     * @return void
      *
      * @dataProvider dataProvider
      *

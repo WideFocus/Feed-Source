@@ -7,24 +7,29 @@
 namespace WideFocus\Feed\Source\Tests\Iterator;
 
 use ArrayIterator;
+use PHPUnit\Framework\TestCase;
 use WideFocus\Feed\Source\Iterator\MapCallbackIterator;
 use WideFocus\Feed\Source\Tests\Iterator\TestDouble\InvokableDouble;
 
 /**
  * @coversDefaultClass \WideFocus\Feed\Source\Iterator\MapCallbackIterator
  */
-class MapCallbackIteratorTest extends \PHPUnit_Framework_TestCase
+class MapCallbackIteratorTest extends TestCase
 {
     /**
-     * @return MapCallbackIterator
+     * @return void
      *
      * @covers ::__construct
      */
-    public function testConstruct(): MapCallbackIterator
+    public function testConstructor()
     {
-        return new MapCallbackIterator(
-            new ArrayIterator(),
-            function () {}
+        $this->assertInstanceOf(
+            MapCallbackIterator::class,
+            new MapCallbackIterator(
+                new ArrayIterator(),
+                function () {
+                }
+            )
         );
     }
 
@@ -32,13 +37,15 @@ class MapCallbackIteratorTest extends \PHPUnit_Framework_TestCase
      * @param array $input
      * @param array $output
      *
+     * @return void
+     *
      * @dataProvider dataProvider
      *
      * @covers ::current
      */
     public function testIteration(array $input, array $output)
     {
-        $mapping  = array_combine($input, $output);
+        $mapping = array_combine($input, $output);
 
         $callback = $this->createMock(InvokableDouble::class);
         $callback->expects($this->exactly(count($input)))
@@ -70,7 +77,7 @@ class MapCallbackIteratorTest extends \PHPUnit_Framework_TestCase
             [
                 range(1000, 1025),
                 array_map(
-                    function (int $value): array {
+                    function (int $value) : array {
                         return ['id' => $value];
                     },
                     range(1000, 1025)
