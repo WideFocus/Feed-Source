@@ -6,7 +6,8 @@
 
 namespace WideFocus\Feed\Source\Field;
 
-use WideFocus\Feed\Source\SourceParametersInterface;
+use WideFocus\Feed\Entity\FeedFieldInterface;
+use WideFocus\Parameters\ParameterBagInterface;
 
 /**
  * Creates source fields.
@@ -16,11 +17,13 @@ interface SourceFieldFactoryInterface
     /**
      * Create a source field.
      *
-     * @param SourceParametersInterface $parameters
+     * @param FeedFieldInterface    $feedField
+     * @param ParameterBagInterface $sourceParameters
      *
      * @return SourceFieldInterface
      */
-    public function createField(
-        SourceParametersInterface $parameters
+    public function create(
+        FeedFieldInterface $feedField,
+        ParameterBagInterface $sourceParameters
     ): SourceFieldInterface;
 }

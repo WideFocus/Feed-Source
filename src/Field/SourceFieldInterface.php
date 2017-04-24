@@ -28,13 +28,4 @@ interface SourceFieldInterface
      * @return void
      */
     public function prepare(array $entityIds);
-
-    /**
-     * Set the code of the attribute.
-     *
-     * @param string $attributeCode
-     *
-     * @return void
-     */
-    public function setAttributeCode(string $attributeCode);
 }

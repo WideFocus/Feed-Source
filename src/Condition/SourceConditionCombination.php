@@ -6,25 +6,33 @@
 
 namespace WideFocus\Feed\Source\Condition;
 
-use WideFocus\Feed\Source\Condition\Validator\ValidatorManagerInterface;
-
 /**
  * Contains a combination of conditions.
  */
-class SourceConditionCombination implements SourceConditionCombinationInterface
+class SourceConditionCombination implements SourceConditionInterface
 {
-    use SourceConditionTrait;
-    use SourceConditionCombinationTrait;
-    use ValidatorDependentTrait;
+    /**
+     * @var callable
+     */
+    private $validator;
+
+    /**
+     * @var SourceConditionInterface[]
+     */
+    private $conditions;
 
     /**
      * Constructor.
      *
-     * @param ValidatorManagerInterface $validators
+     * @param callable                   $validator
+     * @param SourceConditionInterface[] ...$conditions
      */
-    public function __construct(ValidatorManagerInterface $validators)
-    {
-        $this->setValidators($validators);
+    public function __construct(
+        callable $validator,
+        SourceConditionInterface ...$conditions
+    ) {
+        $this->validator  = $validator;
+        $this->conditions = $conditions;
     }
 
     /**
@@ -42,10 +50,10 @@ class SourceConditionCombination implements SourceConditionCombinationInterface
                     return $condition->matches($entityId);
                 };
             },
-            $this->getConditions()
+            $this->conditions
         );
 
-        return call_user_func($this->getOperatorValidator(), $closures);
+        return call_user_func($this->validator, $closures);
     }
 
     /**
@@ -57,9 +65,8 @@ class SourceConditionCombination implements SourceConditionCombinationInterface
      */
     public function prepare(array $entityIds)
     {
-        $conditions = $this->getConditions();
         array_walk(
-            $conditions,
+            $this->conditions,
             function (SourceConditionInterface $condition) use ($entityIds) {
                 $condition->prepare($entityIds);
             }

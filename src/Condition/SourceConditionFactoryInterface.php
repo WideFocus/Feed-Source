@@ -6,7 +6,8 @@
 
 namespace WideFocus\Feed\Source\Condition;
 
-use WideFocus\Feed\Source\SourceParametersInterface;
+use WideFocus\Feed\Entity\FeedConditionInterface;
+use WideFocus\Parameters\ParameterBagInterface;
 
 /**
  * Creates source conditions.
@@ -16,11 +17,13 @@ interface SourceConditionFactoryInterface
     /**
      * Create a source condition.
      *
-     * @param SourceParametersInterface $parameters
+     * @param FeedConditionInterface $feedCondition
+     * @param ParameterBagInterface  $sourceParameters
      *
      * @return SourceConditionInterface
      */
-    public function createCondition(
-        SourceParametersInterface $parameters
+    public function create(
+        FeedConditionInterface $feedCondition,
+        ParameterBagInterface $sourceParameters
     ): SourceConditionInterface;
 }

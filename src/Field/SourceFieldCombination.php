@@ -11,8 +11,20 @@ namespace WideFocus\Feed\Source\Field;
  */
 class SourceFieldCombination implements SourceFieldCombinationInterface
 {
-    use SourceFieldTrait;
-    use SourceFieldCombinationTrait;
+    /**
+     * @var SourceFieldInterface[]
+     */
+    private $fields;
+
+    /**
+     * Constructor.
+     *
+     * @param SourceFieldInterface[] $fields
+     */
+    public function __construct(array $fields)
+    {
+        $this->fields = $fields;
+    }
 
     /**
      * Get the field values for an entity.
@@ -27,7 +39,7 @@ class SourceFieldCombination implements SourceFieldCombinationInterface
             function (SourceFieldInterface $field) use ($entityId) {
                 return $field->getValue($entityId);
             },
-            $this->getFields()
+            $this->fields
         );
     }
 
@@ -40,9 +52,8 @@ class SourceFieldCombination implements SourceFieldCombinationInterface
      */
     public function prepare(array $entityIds)
     {
-        $fields = $this->getFields();
         array_walk(
-            $fields,
+            $this->fields,
             function (SourceFieldInterface $field) use ($entityIds) {
                 $field->prepare($entityIds);
             }

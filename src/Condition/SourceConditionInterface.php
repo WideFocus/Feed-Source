@@ -28,31 +28,4 @@ interface SourceConditionInterface
      * @return void
      */
     public function prepare(array $entityIds);
-
-    /**
-     * Set the attribute code.
-     *
-     * @param string $attributeCode
-     *
-     * @return void
-     */
-    public function setAttributeCode(string $attributeCode);
-
-    /**
-     * Set the operator.
-     *
-     * @param string $operator
-     *
-     * @return void
-     */
-    public function setOperator(string $operator);
-
-    /**
-     * Set the value.
-     *
-     * @param mixed $value
-     *
-     * @return void
-     */
-    public function setValue($value);
 }
