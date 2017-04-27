@@ -4,7 +4,7 @@
  * https://www.widefocus.net
  */
 
-namespace WideFocus\Feed\Source\Tests\Iterator\TestDouble;
+namespace WideFocus\Feed\Source\Tests\TestDouble;
 
 class InvokableDouble
 {

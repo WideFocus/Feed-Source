@@ -6,15 +6,16 @@
 
 namespace WideFocus\Feed\Source\Tests\Condition;
 
+use PHPUnit\Framework\TestCase;
 use WideFocus\Feed\Source\Condition\SourceCondition;
+use WideFocus\Feed\Source\Tests\TestDouble\InvokableDouble;
 use WideFocus\Feed\Source\ValueListInterface;
 use WideFocus\Feed\Source\ValueSourceInterface;
-use WideFocus\Validator\ValidatorInterface;
 
 /**
  * @coversDefaultClass \WideFocus\Feed\Source\Condition\SourceCondition
  */
-class SourceConditionTest extends \PHPUnit\Framework\TestCase
+class SourceConditionTest extends TestCase
 {
     /**
      * @return void
@@ -55,7 +56,7 @@ class SourceConditionTest extends \PHPUnit\Framework\TestCase
             ->with(42)
             ->willReturn('The answer');
 
-        $validator = $this->createMock(ValidatorInterface::class);
+        $validator = $this->createMock(InvokableDouble::class);
         $validator
             ->expects($this->once())
             ->method('__invoke')
@@ -117,7 +118,7 @@ class SourceConditionTest extends \PHPUnit\Framework\TestCase
 
         $condition = new SourceCondition(
             $valueSource,
-            $this->createMock(ValidatorInterface::class),
+            $this->createMock(InvokableDouble::class),
             'foo',
             $valueList
         );

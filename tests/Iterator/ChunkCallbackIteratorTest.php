@@ -10,7 +10,7 @@ use ArrayIterator;
 use Iterator;
 use PHPUnit\Framework\TestCase;
 use WideFocus\Feed\Source\Iterator\ChunkCallbackIterator;
-use WideFocus\Feed\Source\Tests\Iterator\TestDouble\InvokableDouble;
+use WideFocus\Feed\Source\Tests\TestDouble\InvokableDouble;
 
 /**
  * @coversDefaultClass \WideFocus\Feed\Source\Iterator\ChunkCallbackIterator

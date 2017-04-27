@@ -9,7 +9,7 @@ namespace WideFocus\Feed\Source\Tests\Iterator;
 use ArrayIterator;
 use PHPUnit\Framework\TestCase;
 use WideFocus\Feed\Source\Iterator\MapCallbackIterator;
-use WideFocus\Feed\Source\Tests\Iterator\TestDouble\InvokableDouble;
+use WideFocus\Feed\Source\Tests\TestDouble\InvokableDouble;
 
 /**
  * @coversDefaultClass \WideFocus\Feed\Source\Iterator\MapCallbackIterator

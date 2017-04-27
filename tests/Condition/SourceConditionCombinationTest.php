@@ -9,7 +9,7 @@ namespace WideFocus\Feed\Source\Tests\Condition;
 use PHPUnit\Framework\TestCase;
 use WideFocus\Feed\Source\Condition\SourceConditionCombination;
 use WideFocus\Feed\Source\Condition\SourceConditionInterface;
-use WideFocus\Validator\ValidatorInterface;
+use WideFocus\Feed\Source\Tests\TestDouble\InvokableDouble;
 
 /**
  * @coversDefaultClass \WideFocus\Feed\Source\Condition\SourceConditionCombination
@@ -56,7 +56,7 @@ class SourceConditionCombinationTest extends TestCase
         }
 
         $condition = new SourceConditionCombination(
-            $this->createMock(ValidatorInterface::class),
+            $this->createMock(InvokableDouble::class),
             ...$children
         );
 
@@ -72,7 +72,7 @@ class SourceConditionCombinationTest extends TestCase
     {
         $entityId = 41;
 
-        $validator = $this->createMock(ValidatorInterface::class);
+        $validator = $this->createMock(InvokableDouble::class);
         $validator->expects($this->once())
             ->method('__invoke')
             ->willReturnCallback(
