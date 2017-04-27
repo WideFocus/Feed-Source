@@ -48,13 +48,13 @@ use WideFocus\Feed\Source\Condition\SourceConditionInterface;
 $condition = new CustomCondition();
 $condition->prepare($entityIds);
 foreach ($entityIds as $entityId) {
-    if ($condition->isValid($entityId)) {
+    if ($condition->matches($entityId)) {
         // The entity is validated.
     }
 }
 ```
 
-Use `SourceConditionCombinationInterface` to create a combination of conditions.
+Use `SourceConditionCombination` to create a combination of conditions.
 
 ## Source fields
 
@@ -109,15 +109,15 @@ conditions.
 
 ```php
 <?php
-use WideFocus\Feed\Source\Condition\SourceConditionCombinationInterface;
+use WideFocus\Feed\Source\Condition\SourceConditionInterface;
 use WideFocus\Feed\Source\Iterator\ValidatedIdentityIterator;
 
-/** @var SourceConditionCombinationInterface $conditions */
-$conditions = new CustomConditionCombination();
+/** @var SourceConditionInterface $conditions */
+$condition = new CustomCondition();
 
 $validatedIterator = new ValidatedIdentityIterator(
     $identityIterator,
-    $conditions,
+    $condition,
     500
 );
 
@@ -134,10 +134,11 @@ while iterating over them. The returned items are instances of ArrayAccess.
 ```php
 <?php
 use WideFocus\Feed\Source\Field\SourceFieldCombinationInterface;
+use WideFocus\Feed\Source\Field\SourceFieldCombination;
 use WideFocus\Feed\Source\Iterator\IdentityToItemIterator;
 
 /** @var SourceFieldCombinationInterface $fields */
-$fields = new CustomFieldCombination();
+$fields = new SourceFieldCombination([]);
 
 $idToItemIterator = new IdentityToItemIterator(
     $identityIterator,
@@ -173,7 +174,7 @@ $conditions = new CustomConditionCombination();
 $fields = new CustomFieldCombination();
 
 $factory  = new SourceIteratorFactory(500);
-$iterator = $factory->createIterator(
+$iterator = $factory->create(
     $idSource,
     $conditions,
     $fields
