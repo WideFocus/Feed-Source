@@ -7,7 +7,7 @@
 namespace WideFocus\Feed\Source\Tests\Iterator;
 
 use PHPUnit\Framework\TestCase;
-use WideFocus\Feed\Source\IdentitySource\IdentitySourceInterface;
+use WideFocus\Feed\Source\IdentitySourceInterface;
 use WideFocus\Feed\Source\Iterator\IdentitySourceIterator;
 
 /**

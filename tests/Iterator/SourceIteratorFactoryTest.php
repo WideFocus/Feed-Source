@@ -9,7 +9,7 @@ namespace WideFocus\Feed\Source\Tests\Iterator;
 use PHPUnit\Framework\TestCase;
 use WideFocus\Feed\Source\Condition\SourceConditionInterface;
 use WideFocus\Feed\Source\Field\SourceFieldCombinationInterface;
-use WideFocus\Feed\Source\IdentitySource\IdentitySourceInterface;
+use WideFocus\Feed\Source\IdentitySourceInterface;
 use WideFocus\Feed\Source\Iterator\SourceIteratorFactory;
 use WideFocus\Feed\Source\Iterator\SourceIteratorInterface;
 

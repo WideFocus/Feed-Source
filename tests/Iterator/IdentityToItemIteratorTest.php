@@ -12,7 +12,7 @@ use WideFocus\Feed\Source\Field\SourceFieldCombinationInterface;
 use WideFocus\Feed\Source\Iterator\IdentityIteratorInterface;
 use WideFocus\Feed\Source\Iterator\IdentityToItemIterator;
 use WideFocus\Feed\Source\Tests\Iterator\TestDouble\IdentityIteratorDouble;
-use WideFocus\Feed\Source\ValueSource\SourceItem;
+use WideFocus\Feed\Source\SourceItem;
 
 /**
  * @coversDefaultClass \WideFocus\Feed\Source\Iterator\IdentityToItemIterator

@@ -4,13 +4,13 @@
  * https://www.widefocus.net
  */
 
-namespace WideFocus\Feed\Source\Tests\ValueSource;
+namespace WideFocus\Feed\Source\Tests;
 
 use PHPUnit\Framework\TestCase;
-use WideFocus\Feed\Source\ValueSource\ValueList;
+use WideFocus\Feed\Source\ValueList;
 
 /**
- * @coversDefaultClass \WideFocus\Feed\Source\ValueSource\ValueList
+ * @coversDefaultClass \WideFocus\Feed\Source\ValueList
  */
 class ValueListTest extends TestCase
 {

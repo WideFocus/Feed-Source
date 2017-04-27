@@ -4,13 +4,13 @@
  * https://www.widefocus.net
  */
 
-namespace WideFocus\Feed\Source\Tests\ValueSource;
+namespace WideFocus\Feed\Source\Tests;
 
 use PHPUnit\Framework\TestCase;
-use WideFocus\Feed\Source\ValueSource\SourceItem;
+use WideFocus\Feed\Source\SourceItem;
 
 /**
- * @coversDefaultClass \WideFocus\Feed\Source\ValueSource\SourceItem
+ * @coversDefaultClass \WideFocus\Feed\Source\SourceItem
  */
 class SourceItemTest extends TestCase
 {

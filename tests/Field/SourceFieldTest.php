@@ -8,8 +8,8 @@ namespace WideFocus\Feed\Source\Tests\Field;
 
 use PHPUnit\Framework\TestCase;
 use WideFocus\Feed\Source\Field\SourceField;
-use WideFocus\Feed\Source\ValueSource\ValueListInterface;
-use WideFocus\Feed\Source\ValueSource\ValueSourceInterface;
+use WideFocus\Feed\Source\ValueListInterface;
+use WideFocus\Feed\Source\ValueSourceInterface;
 
 /**
  * @coversDefaultClass \WideFocus\Feed\Source\Field\SourceField

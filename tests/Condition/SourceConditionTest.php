@@ -6,10 +6,9 @@
 
 namespace WideFocus\Feed\Source\Tests\Condition;
 
-
 use WideFocus\Feed\Source\Condition\SourceCondition;
-use WideFocus\Feed\Source\ValueSource\ValueListInterface;
-use WideFocus\Feed\Source\ValueSource\ValueSourceInterface;
+use WideFocus\Feed\Source\ValueListInterface;
+use WideFocus\Feed\Source\ValueSourceInterface;
 use WideFocus\Validator\ValidatorInterface;
 
 /**
