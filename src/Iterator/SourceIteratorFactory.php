@@ -8,7 +8,7 @@ namespace WideFocus\Feed\Source\Iterator;
 
 use WideFocus\Feed\Source\Condition\SourceConditionInterface;
 use WideFocus\Feed\Source\Field\SourceFieldCombinationInterface;
-use WideFocus\Feed\Source\IdentitySource\IdentitySourceInterface;
+use WideFocus\Feed\Source\IdentitySourceInterface;
 
 class SourceIteratorFactory implements SourceIteratorFactoryInterface
 {

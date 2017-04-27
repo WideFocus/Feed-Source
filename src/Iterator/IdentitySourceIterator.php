@@ -7,7 +7,7 @@
 namespace WideFocus\Feed\Source\Iterator;
 
 use ArrayIterator;
-use WideFocus\Feed\Source\IdentitySource\IdentitySourceInterface;
+use WideFocus\Feed\Source\IdentitySourceInterface;
 
 /**
  * Iterates over an identity source.

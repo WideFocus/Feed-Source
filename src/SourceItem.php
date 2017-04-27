@@ -4,7 +4,7 @@
  * https://www.widefocus.net
  */
 
-namespace WideFocus\Feed\Source\ValueSource;
+namespace WideFocus\Feed\Source;
 
 use ArrayAccess;
 

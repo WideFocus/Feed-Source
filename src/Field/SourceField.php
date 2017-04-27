@@ -6,9 +6,9 @@
 
 namespace WideFocus\Feed\Source\Field;
 
-use WideFocus\Feed\Source\ValueSource\ValueList;
-use WideFocus\Feed\Source\ValueSource\ValueListInterface;
-use WideFocus\Feed\Source\ValueSource\ValueSourceInterface;
+use WideFocus\Feed\Source\ValueList;
+use WideFocus\Feed\Source\ValueListInterface;
+use WideFocus\Feed\Source\ValueSourceInterface;
 
 /**
  * Default source field implementation.
